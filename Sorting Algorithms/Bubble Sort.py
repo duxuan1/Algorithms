@@ -16,7 +16,19 @@ def bubble_sort(lst: List[int]) -> List[int]:
     return lst
 
 
-if __name__ == "__main__":
-    lst = [5, 2, 7, 1, 9, 0]
-    res = bubble_sort(lst)
-    assert res == sorted(lst)
+def make_list(n: int) -> List[int]:
+    """
+    Return a random list of n ints.
+    """
+    import random
+    res = list(range(n))
+    random.shuffle(res)
+    return res
+
+
+if __name__ == '__main__':
+    size = 1000
+    for i in range(4):
+        L = make_list(size)
+        assert bubble_sort(L) == sorted(L)
+        size *= 2
