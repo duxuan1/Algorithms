@@ -1,6 +1,20 @@
 from typing import List
 
 
+def merge_sort(lst: List[int]) -> List[int]:
+    """
+    Return a list that contains the items in L in non-descending order.
+    """
+    # Base case
+    if len(lst) < 2:
+        return lst
+    # Recursive case
+    mid = len(lst) // 2
+    l1 = merge_sort(lst[:mid])
+    l2 = merge_sort(lst[mid:])
+    return merge(l1, l2)
+
+
 def merge(l1: List[int], l2: List[int]) -> List[int]:
     """
     Return a new list that contains the items in L1 and L2 in
@@ -20,20 +34,6 @@ def merge(l1: List[int], l2: List[int]) -> List[int]:
     merged += l1[index1:]
     merged += l2[index2:]
     return merged
-
-
-def merge_sort(lst: List[int]) -> List[int]:
-    """
-    Return a list that contains the items in L in non-descending order.
-    """
-    # Base case
-    if len(lst) < 2:
-        return lst
-    # Recursive case
-    mid = len(lst) // 2
-    l1 = merge_sort(lst[:mid])
-    l2 = merge_sort(lst[mid:])
-    return merge(l1, l2)
 
 
 def make_list(n: int) -> List[int]:
