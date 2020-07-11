@@ -1,25 +1,18 @@
 from typing import List
+from Binary_Tree_ADT import *
 
 
-# Definition for a binary tree node.
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
-
-
-def dfs(root: TreeNode) -> List[List[int]]:
+def bfs(root: TreeNode) -> List[int]:
     if not root:
         return []
-    tree, stack = [], [root]
-    while stack:
-        node = stack.pop(0)
+    tree, queue = [], [root]
+    while queue:
+        node = queue.pop(0)
         tree.append(node.val)
-        if node.right:
-            stack.insert(0, node.right)
         if node.left:
-            stack.insert(0, node.left)
+            queue.append(node.left)
+        if node.right:
+            queue.append(node.right)
     return tree
 
 
@@ -45,6 +38,5 @@ def make_tree() -> TreeNode:
 
 if __name__ == '__main__':
     root = make_tree()
-    result = dfs(root)
-    print(result)
-    assert result == [1, 2, 4, 5, 3, 6, 7]
+    result = bfs(root)
+    assert result == [1, 2, 3, 4, 5, 6, 7]
