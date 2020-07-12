@@ -34,5 +34,4 @@ def make_tree() -> TreeNode:
 if __name__ == '__main__':
     root = make_tree()
     result = postorder(root)
-    print(result)
     assert result == [4, 5, 2, 6, 7, 3, 1]
