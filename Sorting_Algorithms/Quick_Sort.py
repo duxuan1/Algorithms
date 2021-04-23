@@ -11,24 +11,24 @@ def quick_sort(lst: List[int], left, right):
     """
     if left < right:
         pivot = lst[right]
-        i = partition(pivot, lst, left, right - 1)
-        lst[i], lst[right] = lst[right], lst[i]
-        quick_sort(lst, left, i - 1)
-        quick_sort(lst, i + 1, right)
+        pivot_idx = partition(pivot, lst, left, right)
+
+        quick_sort(lst, left, pivot_idx - 1)
+        quick_sort(lst, pivot_idx + 1, right)
 
 
 def partition(pivot: int, lst: List[int], left: int, right: int):
     """
     break a list up (partition) into the part smaller than some
-    value (pivot) and not smaller than that valu
+    value (pivot) and not smaller than that value
     """
-    i = j = left
-    while j <= right:
-        if lst[j] < pivot:
-            lst[i], lst[j] = lst[j], lst[i]
-            i += 1
-        j += 1
-    return i
+    actual_idx = left
+    for i in range(left, right):
+        if lst[i] < pivot:
+            lst[i], lst[actual_idx] = lst[actual_idx], lst[i]
+            actual_idx += 1
+    lst[actual_idx], lst[right] = lst[right], lst[actual_idx]
+    return actual_idx
 
 
 def make_list(n: int) -> List[int]:
